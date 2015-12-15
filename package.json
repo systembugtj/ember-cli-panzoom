@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-panzoom",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0",
+  "description": "An ember-cli addons for jquery.panzoom.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -9,13 +9,21 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:testall"
+    "test": "ember try:testall",
+    "postversion": "git push && git push --tags"
   },
-  "repository": "",
+  "repository":  {
+    "type": "git",
+    "url": "https://github.com/systembugtj/ember-cli-panzoom"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": {
+    "name": "Albert Li",
+    "email": "albert_lee@hotmail.com",
+    "url": "https://github.com/systembugtj/ember-cli-panzoom"
+  },
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
@@ -38,9 +46,11 @@
     "ember-try": "~0.0.8"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "panzoom"
   ],
   "dependencies": {
+    "ember-cli-htmlbars": "^1.0.1",
     "ember-cli-babel": "^5.1.5"
   },
   "ember-addon": {

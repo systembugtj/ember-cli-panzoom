@@ -17,6 +17,13 @@ export default Ember.Component.extend({
   contain: false,
   startTransform: undefined,
   
+  onZoomChanged: Ember.observer('zooming', () => {
+    let zoomOut = this.get("zooming")
+    this.get("$panzoom").panzoom('zoom', zoomOut, {
+      increment: 0.1,
+      animate: false,
+    });
+  }),
   
   didInsertElement() {
     var _this = this;
@@ -51,16 +58,6 @@ export default Ember.Component.extend({
       _this.sendAction('onReset', panzoom);
     });
     
-    this.$().on('mousewheel.focal', e => {
-      e.preventDefault();
-      var delta = e.delta || e.originalEvent.wheelDelta;
-      var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
-      this.get("$panzoom").panzoom('zoom', zoomOut, {
-        increment: 0.1,
-        animate: false,
-        focal: e
-      });
-    });
     this.set("$panzoom", panzoom);
     return panzoom;
   },

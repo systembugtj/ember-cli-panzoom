@@ -1,12 +1,22 @@
-# Ember-cli-panzoom
+# ember-cli-panzoom
 
-This README outlines the details of collaborating on this Ember addon.
+This is ember cli addon for jquey.panzoom usage as ember component.
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+From inside your ember-cli project, run the following:
+
+```bash
+ember install ember-cli-panzoom
+```
+
+### pan-zoom
+
+```hbs
+{{#pan-zoom zooming=zooming}}
+  <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg">
+{{/pan-zoom}}
+```
 
 ## Running
 

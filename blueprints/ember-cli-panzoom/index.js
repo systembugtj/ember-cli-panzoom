@@ -3,6 +3,9 @@ module.exports = {
   },
 
   afterInstall: function() {
-    return this.addBowerPackageToProject('jquery.panzoom');
+    return this.addAddonToProject('ember-cli-mousewheel').then(() => {
+      return this.addBowerPackageToProject('jquery.panzoom'); 
+    });
+     
   }
 };

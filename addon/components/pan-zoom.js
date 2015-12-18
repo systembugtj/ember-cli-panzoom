@@ -17,7 +17,7 @@ export default Ember.Component.extend({
   contain: false,
   startTransform: undefined,
   
-  onZoomChanged: Ember.observer('zooming', () => {
+  onZoomChanged: Ember.observer('zooming', function() {
     let zoomOut = this.get("zooming")
     this.get("$panzoom").panzoom('zoom', zoomOut, {
       increment: 0.1,

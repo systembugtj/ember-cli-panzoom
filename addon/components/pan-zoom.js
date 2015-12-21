@@ -36,6 +36,7 @@ export default Ember.Component.extend({
     easing: Ember.computed.alias("options.easing"),
     contain: Ember.computed.alias("options.contain"),
     startTransform: Ember.computed.alias("options.startTransform"),
+    
     /*
      * @method observer option change, and set panzoom option
      */

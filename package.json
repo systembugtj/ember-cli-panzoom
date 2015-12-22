@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-panzoom",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "An ember-cli addons for jquery.panzoom.",
   "directories": {
     "doc": "doc",

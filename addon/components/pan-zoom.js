@@ -6,6 +6,7 @@ export default Ember.Component.extend({
     zoomAnimation: false,
     mousewheel: true,
     // options which match jquery.panzoom options.
+    classNames: ["pan-zoom"],
     options: {
         eventNamespace: ".panzoom",
         transition: true,
@@ -51,10 +52,17 @@ export default Ember.Component.extend({
         this.get("$panzoom").panzoom('zoom', zoomOut, {
             increment: 0.1,
             animate: this.get("zoomAnimation"),
+            focal: e
         });
     },
     
+    onReset(options) {
+        options = options || {};    
+        this.get("$panzoom").panzoom("reset", options);  
+    },
+    
     didInsertElement() {
+        this._super(...arguments);
         var _this = this;
         let $panzoom = this.$().panzoom({
             eventNamespace: this.get("eventNamespace"),
@@ -92,13 +100,23 @@ export default Ember.Component.extend({
             this.set("mousewheelHandled", true);
         }
         this.set("$panzoom", $panzoom);
-        return $panzoom;
+        
+        // If parent controller has on, so we can listen to reset event.
+        let parent = this.get("targetObject");
+        if (parent && parent.on) {
+            this.set("resetHandled", true);
+            parent.on("reset", this.onReset.bind(this));
+        }
     },
     
     willDestroyElement() {
         if (this.get("mousewheelHandled")) {
             let $parent = this.$().parent();
             $parent.off('mousewheel.focal', this.onMouseWheel.bind(this));
+        }
+        if (this.get("resetHandled")) {
+            let parent = this.get("targetObject");
+            parent.off("reset", this.onReset.bind(this));
         }
     },
 });

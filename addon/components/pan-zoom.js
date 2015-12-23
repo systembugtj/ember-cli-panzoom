@@ -61,6 +61,10 @@ export default Ember.Component.extend({
         this.get("$panzoom").panzoom("reset", options);  
     },
     
+    onSizeChanged() {
+        this.get("$panzoom").panzoom('resetDimensions');
+    },
+    
     didInsertElement() {
         this._super(...arguments);
         var _this = this;
@@ -79,21 +83,25 @@ export default Ember.Component.extend({
             contain: this.get("contain"),
             startTransform: this.get("startTransform"),
         })
-        .on('onStart', function ($event, panzoom) {
-            _this.sendAction('onStart', $event, panzoom);
+        .on('panzoomstart', function ($event, panzoom, $previous, touches) {
+            _this.sendAction('start', panzoom, $previous, touches);
         })
-        .on('onChange', function ($event, panzoom) {
-            _this.sendAction('onChange', panzoom);
+        .on('panzoomchange', function ($event, panzoom, transform) {
+            _this.sendAction('change', panzoom, transform);
         })
-        .on('onPan', function ($event, panzoom) {
-            _this.sendAction('onPan', panzoom);
+        .on("panzoomzoom", function ($event, panzoom, scale, opts) {
+            _this.sendAction('zoom', panzoom, scale, opts);
         })
-        .on('onEnd', function ($event, panzoom) {
-            _this.sendAction('onEnd', panzoom);
+        .on('panzoompan', function ($event, panzoom, x, y) {
+            _this.sendAction('pan', panzoom, x, y);
         })
-        .on('onReset', function ($event, panzoom) {
-            _this.sendAction('onReset', panzoom);
+        .on('panzoomend', function ($event, panzoom, x, y) {
+            _this.sendAction('end', panzoom, x, y);
+        })
+        .on('panzoomreset', function ($event, panzoom, matrix) {
+            _this.sendAction('reset', panzoom, matrix);
         });
+        
         if (this.get("mousewheel")) {
             let $parent = $panzoom.parent();
             $parent.on('mousewheel.focal', this.onMouseWheel.bind(this));
@@ -107,8 +115,10 @@ export default Ember.Component.extend({
             this.set("resetHandled", true);
             parent.on("reset", this.onReset.bind(this));
         }
+        this.$(window).on('orientationchange', this.onSizeChanged.bind(this));
+        this.$(window).on('resize', this.onSizeChanged.bind(this));
     },
-    
+  
     willDestroyElement() {
         if (this.get("mousewheelHandled")) {
             let $parent = this.$().parent();
@@ -118,5 +128,7 @@ export default Ember.Component.extend({
             let parent = this.get("targetObject");
             parent.off("reset", this.onReset.bind(this));
         }
+        this.$(window).off('orientationchange', this.onSizeChanged.bind(this));
+        this.$(window).off('resize', this.onSizeChanged.bind(this));
     },
 });

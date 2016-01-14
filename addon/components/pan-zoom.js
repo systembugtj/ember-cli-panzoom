@@ -44,7 +44,7 @@ export default Ember.Component.extend({
     onOptionChanged: Ember.observer("options", function () {
         this.get("$panzoom")("options", this.get("options"));
     }),
-    
+
     onMouseWheel(e) {
         e.preventDefault();
         let delta = e.delta || e.originalEvent.wheelDelta;
@@ -55,53 +55,65 @@ export default Ember.Component.extend({
             focal: e
         });
     },
-    
+
     onReset(options) {
-        options = options || {};    
-        this.get("$panzoom").panzoom("reset", options);  
+        options = options || {};
+        this.get("$panzoom").panzoom("reset", options);
     },
-    
+
     onSizeChanged() {
         this.get("$panzoom").panzoom('resetDimensions');
     },
     
+    // basically says if it's touch or not
+    humanReadablePointerType(e) {
+        switch (e.pointerType) {
+            case 'mouse':
+            case e.MSPOINTER_TYPE_MOUSE:
+                return 'mouse';
+        }
+        // pen is just fine as touch
+        return 'touch';
+    },
+
     didInsertElement() {
         this._super(...arguments);
         var _this = this;
-        let $panzoom = this.$().panzoom({
-            eventNamespace: this.get("eventNamespace"),
-            transition: this.get("transition"),
-            cursor: this.get("cursor"),
-            disablePan: this.get("disablePan"),
-            disableZoom: this.get("disableZoom"),
-            increment: this.get("increment"),
-            minScale: this.get("minScale"),
-            maxScale: this.get("maxScale"),
-            rangeStep: this.get("rangeStep"),
-            duration: this.get("duration"),
-            easing: this.get("easing"),
-            contain: this.get("contain"),
-            startTransform: this.get("startTransform"),
-        })
-        .on('panzoomstart', function ($event, panzoom, $previous, touches) {
-            _this.sendAction('start', panzoom, $previous, touches);
-        })
-        .on('panzoomchange', function ($event, panzoom, transform) {
-            _this.sendAction('change', panzoom, transform);
-        })
-        .on("panzoomzoom", function ($event, panzoom, scale, opts) {
-            _this.sendAction('zoom', panzoom, scale, opts);
-        })
-        .on('panzoompan', function ($event, panzoom, x, y) {
-            _this.sendAction('pan', panzoom, x, y);
-        })
-        .on('panzoomend', function ($event, panzoom, x, y) {
-            _this.sendAction('end', panzoom, x, y);
-        })
-        .on('panzoomreset', function ($event, panzoom, matrix) {
-            _this.sendAction('reset', panzoom, matrix);
-        });
-        
+        let $panzoom = this.$();
+        $panzoom.panzoom({
+                eventNamespace: this.get("eventNamespace"),
+                transition: this.get("transition"),
+                cursor: this.get("cursor"),
+                disablePan: this.get("disablePan"),
+                disableZoom: this.get("disableZoom"),
+                increment: this.get("increment"),
+                minScale: this.get("minScale"),
+                maxScale: this.get("maxScale"),
+                rangeStep: this.get("rangeStep"),
+                duration: this.get("duration"),
+                easing: this.get("easing"),
+                contain: this.get("contain"),
+                startTransform: this.get("startTransform"),
+            })
+            .on('panzoomstart', function ($event, panzoom, $previous, touches) {
+                _this.sendAction('start', panzoom, $previous, touches);
+            })
+            .on('panzoomchange', function ($event, panzoom, transform) {
+                _this.sendAction('change', panzoom, transform);
+            })
+            .on("panzoomzoom", function ($event, panzoom, scale, opts) {
+                _this.sendAction('zoom', panzoom, scale, opts);
+            })
+            .on('panzoompan', function ($event, panzoom, x, y) {
+                _this.sendAction('pan', panzoom, x, y);
+            })
+            .on('panzoomend', function ($event, panzoom, x, y) {
+                _this.sendAction('end', panzoom, x, y);
+            })
+            .on('panzoomreset', function ($event, panzoom, matrix) {
+                _this.sendAction('reset', panzoom, matrix);
+            })
+
         if (this.get("mousewheel")) {
             let $parent = $panzoom.parent();
             $parent.on('mousewheel.focal', this.onMouseWheel.bind(this));
@@ -118,7 +130,7 @@ export default Ember.Component.extend({
         this.$(window).on('orientationchange', this.onSizeChanged.bind(this));
         this.$(window).on('resize', this.onSizeChanged.bind(this));
     },
-  
+
     willDestroyElement() {
         if (this.get("mousewheelHandled")) {
             let $parent = this.$().parent();

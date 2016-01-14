@@ -11,6 +11,7 @@ module.exports = {
 
   included: function(app) {
     this._super.included(app);
+    this.app.import("vendor/ie-touch.js");
     this.app.import(app.bowerDirectory + '/jquery.panzoom/dist/jquery.panzoom.js');
   }
 };

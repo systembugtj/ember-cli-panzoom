@@ -217,9 +217,11 @@ JS
             pointermove: function (e) {
                 var pointerId = e.pointerId,
                     touch = touches[pointerId];
-                touch._ = e;
-                dispatchEvent('touchmove', e, touch);
-                changedTouches[pointerId]._ = e;
+                if (touch) {
+                    touch._ = e;
+                    dispatchEvent('touchmove', e, touch);
+                    changedTouches[pointerId]._ = e;
+                }
             },
             pointerup: upOrCancel('touchend'),
             pointercancel: upOrCancel('touchcancel')

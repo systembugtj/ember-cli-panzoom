@@ -132,12 +132,15 @@ JS
         },
         // shortcut for all events
         dispatchEvent = function (type, e, touch) {
-            var c = document.createEvent('Event');
-            c.initEvent(type, true, true);
-            G.value = e;
-            TouchEventProperties.currentTarget.value = touch.currentTarget;
-            defineProperties(c, TouchEventProperties);
-            touch.currentTarget.dispatchEvent(c);
+          if (!touch || !touch.currentTarget) {
+            return;
+          }
+          var c = document.createEvent('Event');
+          c.initEvent(type, true, true);
+          G.value = e;
+          TouchEventProperties.currentTarget.value = touch.currentTarget;
+          defineProperties(c, TouchEventProperties);
+          touch.currentTarget.dispatchEvent(c);
         },
         get = function (name, object) {
             function returnID(id) {

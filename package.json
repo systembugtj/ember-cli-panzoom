@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-panzoom",
-  "version": "0.1.14",
+  "version": "0.1.16",
   "description": "An ember-cli addons for jquery.panzoom.",
   "directories": {
     "doc": "doc",
@@ -10,7 +10,8 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember try:testall",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "publish": "npm publish ./ --tag latest"	
   },
   "repository": {
     "type": "git",

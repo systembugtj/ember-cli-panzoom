@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/pan-zoom';
 
-export default Ember.Component.extend({
+let PanZoomComponent = Ember.Component.extend({
   layout: layout,
   zoomAnimation: false,
   mousewheel: true,
@@ -159,3 +159,7 @@ export default Ember.Component.extend({
     this.$(window).off('resize', this.onSizeChanged.bind(this));
   },
 });
+
+PanZoomComponent[Ember.NAME_KEY] = "pan zoom";
+export default PanZoomComponent;
+

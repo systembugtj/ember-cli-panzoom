@@ -62,7 +62,7 @@
     "ember-cli-htmlbars": "^1.1.1",
     "jquery": "^3.2.1",
     "jquery-mousewheel": "^3.1.13",
-    "jquery.panzoom": "https://github.com/inuyaksa/jquery.panzoom/tarball/f3cafa21fa15db0451d30dc39849662f0b371160"
+    "jquery.panzoom": "3.1.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

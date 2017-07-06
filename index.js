@@ -1,7 +1,6 @@
 /* jshint node: true */
 'use strict';
 var path = require('path');
-const nodeModulesPath = require('node-modules-path');
 
 module.exports = {
   name: 'ember-cli-panzoom',

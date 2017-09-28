@@ -20,10 +20,13 @@ module.exports = {
       files: ['jquery.panzoom.js', 'jquery.panzoom.min.js'],
       destDir: 'jquery.panzoom'
     });
-    panzoomTree = new BroccoliDebug(panzoomTree, 'ember-cli-panzoom:panzoom-tree');
+    panzoomTree = new BroccoliDebug(
+      panzoomTree, 'ember-cli-panzoom:panzoom-tree'
+    );
 
-    // Make sure this is not overridden by file with the same name in vendor folder
-    // For this purpose put ie-touch.js in vendor tree into sub-folder.
+    // Make sure this does not conflict with the same file name in
+    // "vendor" folder. For this purpose put ie-touch.js in vendor tree
+    // into sub-folder.
     var ieTouchTree = new Funnel(path.join(__dirname, 'vendor'), {
       files: ['ie-touch.js'],
       destDir: 'ie-touch'
@@ -36,7 +39,9 @@ module.exports = {
       vendorTree = mergeTrees(panzoomTree, ieTouchTree);
     }
 
-    return new BroccoliDebug(fbTransform(vendorTree), 'ember-cli-panzoom:vendor-tree');
+    return new BroccoliDebug(
+      fbTransform(vendorTree), 'ember-cli-panzoom:vendor-tree'
+    );
   },
 
   included: function(app) {
@@ -46,6 +51,6 @@ module.exports = {
       development: 'vendor/jquery.panzoom/jquery.panzoom.js',
       production: 'vendor/jquery.panzoom/jquery.panzoom.min.js'
     });
-    app.import("vendor/ie-touch/ie-touch.js");
+    app.import('vendor/ie-touch/ie-touch.js');
   }
 };

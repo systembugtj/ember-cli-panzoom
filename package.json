@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:testall",
     "postversion": "git push && git push --tags",
-    "publish": "npm publish ./ --tag latest"	
+    "publish": "npm publish ./ --tag latest"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,9 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
+    "broccoli-debug": "^0.6.3",
+    "broccoli-funnel": "^2.0.1",
+    "broccoli-merge-trees": "^2.0.0",
     "ember-cli": "1.13.13",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-content-security-policy": "0.4.0",
@@ -52,7 +55,9 @@
   ],
   "dependencies": {
     "ember-cli-htmlbars": "^1.0.1",
-    "ember-cli-babel": "^5.1.5"
+    "ember-cli-babel": "^5.1.5",
+    "fastboot-transform": "^0.1.2",
+    "jquery.panzoom": "^3.2.2"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

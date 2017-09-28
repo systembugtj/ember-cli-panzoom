@@ -112,7 +112,7 @@ export default Ember.Component.extend({
             })
             .on('panzoomreset', function ($event, panzoom, matrix) {
                 _this.sendAction('reset', panzoom, matrix);
-            })
+            });
 
         if (this.get("mousewheel")) {
             let $parent = $panzoom.parent();

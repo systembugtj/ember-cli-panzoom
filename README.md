@@ -1,5 +1,10 @@
 # ember-cli-panzoom
 
+[![Build Status](https://travis-ci.org/systembugtj/ember-cli-panzoom.svg?branch=master)](https://travis-ci.org/systembugtj/ember-cli-panzoom)
+[![npm version](https://badge.fury.io/js/ember-cli-panzoom.svg)](https://badge.fury.io/js/ember-cli-panzoom)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-cli-panzoom.svg)](http://emberobserver.com/addons/ember-cli-panzoom)
+
+
 This is ember cli addon for jquery.panzoom usage as ember component.
 
 0.2.0

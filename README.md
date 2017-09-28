@@ -1,14 +1,18 @@
 # ember-cli-panzoom
 
-This is ember cli addon for jquey.panzoom usage as ember component.
+This is ember cli addon for jquery.panzoom usage as ember component.
+
+0.2.0
+Use jquery-panzoom npm package and support FastBoot.
+
+0.1.16
+Use jquery-panzoom bower package.
 
 ## Installation
 
-From inside your ember-cli project, run the following:
-
-```bash
-ember install ember-cli-panzoom
-```
+* `git clone <repository-url>` this repository
+* `cd ember-cli-panzoom`
+* `npm install`
 
 ### pan-zoom
 
@@ -20,12 +24,12 @@ ember install ember-cli-panzoom
 
 ## Running
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+* `ember serve`
+* Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ## Running Tests
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
+* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 
@@ -33,4 +37,4 @@ ember install ember-cli-panzoom
 
 * `ember build`
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).

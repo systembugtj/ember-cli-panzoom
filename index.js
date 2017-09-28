@@ -23,6 +23,7 @@ module.exports = {
     panzoomTree = new BroccoliDebug(panzoomTree, 'ember-cli-panzoom:panzoom-tree');
 
     // Make sure this is not overridden by file with the same name in vendor folder
+    // For this purpose put ie-touch.js in vendor tree into sub-folder.
     var ieTouchTree = new Funnel(path.join(__dirname, 'vendor'), {
       files: ['ie-touch.js'],
       destDir: 'ie-touch'
@@ -30,9 +31,7 @@ module.exports = {
     ieTouchTree = new BroccoliDebug(ieTouchTree, 'ember-cli-panzoom:ie-touch');
 
     if (vendorTree) {
-      vendorTree = mergeTrees([vendorTree, panzoomTree, ieTouchTree], {
-        overwrite: true
-      });
+      vendorTree = mergeTrees([vendorTree, panzoomTree, ieTouchTree]);
     } else {
       vendorTree = mergeTrees(panzoomTree, ieTouchTree);
     }

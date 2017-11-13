@@ -16,7 +16,7 @@ Use jquery-panzoom bower package.
 ## Installation
 
 ```bash
-ember install ember-cli-mousewheel
+ember install ember-cli-panzoom
 ```
 
 ### pan-zoom

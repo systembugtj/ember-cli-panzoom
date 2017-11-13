@@ -22,10 +22,11 @@ ember install ember-cli-panzoom
 ### pan-zoom
 
 ```hbs
-{{#pan-zoom zooming=zooming}}
+{{#pan-zoom}}
   <img src="https://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg">
 {{/pan-zoom}}
 ```
+_Refer to /addon/components/pan-zoom.js for component options_
 
 ## Running
 

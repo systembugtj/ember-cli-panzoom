@@ -30,8 +30,7 @@
   "dependencies": {
     "ember-cli-babel": "^6.3.0",
     "ember-cli-htmlbars": "^2.0.3",
-    "fastboot-transform": "^0.1.2",
-    "jquery.panzoom": "^3.2.2"
+    "fastboot-transform": "^0.1.2"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

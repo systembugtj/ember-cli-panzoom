@@ -127,20 +127,24 @@ export default Ember.Component.extend({
             this.set("resetHandled", true);
             parent.on("reset", this.onReset.bind(this));
         }
-        this.$(window).on('orientationchange', this.onSizeChanged.bind(this));
-        this.$(window).on('resize', this.onSizeChanged.bind(this));
+        this.element.querySelectorAll(window).forEach(
+            el => el.addEventListener('orientationchange', this.onSizeChanged.bind(this))
+        );
+        this.element.querySelectorAll(window).forEach(el => el.addEventListener('resize', this.onSizeChanged.bind(this)));
     },
 
     willDestroyElement() {
         if (this.get("mousewheelHandled")) {
-            let $parent = this.$().parent();
+            let $parent = this.element.addEventListener();
             $parent.off('mousewheel.focal', this.onMouseWheel.bind(this));
         }
         if (this.get("resetHandled")) {
             let parent = this.get("targetObject");
             parent.off("reset", this.onReset.bind(this));
         }
-        this.$(window).off('orientationchange', this.onSizeChanged.bind(this));
-        this.$(window).off('resize', this.onSizeChanged.bind(this));
+        this.element.querySelectorAll(window).forEach(
+            el => el.addEventListener('orientationchange', this.onSizeChanged.bind(this))
+        );
+        this.element.querySelectorAll(window).forEach(el => el.addEventListener('resize', this.onSizeChanged.bind(this)));
     },
 });

@@ -3276,10 +3276,6 @@ istextorbinary@2.1.0:
     editions "^1.1.1"
     textextensions "1 || 2"
 
-jquery.panzoom@^3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/jquery.panzoom/-/jquery.panzoom-3.2.2.tgz#b41940f5079195be504073b677d8c548f47ece8a"
-
 jquery@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"

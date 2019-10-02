@@ -1,21 +1,23 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, findAll, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('pan-zoom', 'Integration | Component | pan zoom', {
-  integration: true
-});
+module('Integration | Component | pan zoom', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  this.render(hbs`{{pan-zoom}}`);
+  test('it renders', async function(assert) {
+    await render(hbs`{{pan-zoom}}`);
 
-  assert.equal(this.$('.pan-zoom').length, 1);
+    assert.equal(findAll('.pan-zoom').length, 1);
 
-  // Template block usage:" + EOL +
-  this.render(hbs`
-    {{#pan-zoom}}
-      template block text
-    {{/pan-zoom}}
-  `);
+    // Template block usage:" + EOL +
+    await render(hbs`
+      {{#pan-zoom}}
+        template block text
+      {{/pan-zoom}}
+    `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(find('*').textContent.trim(), 'template block text');
+  });
 });
